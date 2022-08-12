@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// import routes from "./routes";
+import routes from "./routes";
 // import deserializeUser from "./middleware/deserializeUser";
 
 const app = express();
@@ -22,7 +22,7 @@ function initialize() {
     app.listen(4000, () => {
         console.log(`Server listening at http://localhost:4000`);
     });
-//   routes(app);
+  routes(app);
 }
 
 initialize();
