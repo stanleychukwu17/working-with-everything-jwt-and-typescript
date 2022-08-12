@@ -1,34 +1,28 @@
-import express from 'express'
-require('dotenv').config()
-const {graphqlHTTP} = require('express-graphql')
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+// import routes from "./routes";
+// import deserializeUser from "./middleware/deserializeUser";
 
-
-//* creates an express app
-const port = process.env.PORT || 4000
 const app = express();
+
+app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
-//* import {connectToDb, getDb} from './db'
-const {ObjectId} = require('mongodb');
-const {connectToDb, getDb} = require('./db')
+// app.use(deserializeUser);
 
-//* opens connection to the mongodb database before listening for request
-let db: any
-connectToDb((err: any) => {
-    if (!err) {
-        // now we can start listening for events
-        app.listen(port, () => {
-            console.log(`now listening to request from port ${port}`)
-        })
+app.use(
+    cors({
+        credentials: true, origin: "http://localhost:3000",
+    })
+);
 
-        // updates our database variable
-        db = getDb()
-    } else {
-        console.log(`we have an error, error: ${err}`)
-    }
-})
+function initialize() {
+    app.listen(4000, () => {
+        console.log(`Server listening at http://localhost:4000`);
+    });
+//   routes(app);
+}
 
-
-// app.listen(port, () => {
-//     console.log(`now listening to request from port ${port}`)
-// })
+initialize();
