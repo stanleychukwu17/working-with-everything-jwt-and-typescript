@@ -1,3 +1,4 @@
+A json web token is made up of the below:
 const jwt = `${encodedHeader}.${encodedPayload}.${signature}`;
 
 so an example of the header can be:
