@@ -33,7 +33,7 @@ export function createSessionHandler(req: Request, res: Response) {
         httpOnly: true,
     });
 
-    // send user back
+    // send user back, but the teacher did line
     return res.send(session);
 }
 
