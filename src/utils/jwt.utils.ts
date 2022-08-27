@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
-
-// the teacher says you can generate keys using google search engine
+// the teacher says you can generate keys using google search engine, just google 'generate private key'
+// try this site: https://travistidwell.com/jsencrypt/demo/
 const privateKey = `
 -----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgHgnvr7O2tiApjJfid1orFnIGm6980fZp+Lpbjo+NC/0whMFga2B
@@ -35,7 +35,7 @@ export function signJWT(payload: object, expiresIn: string | number) {
 export function verifyJWT(token: string) {
     try {
         const decoded = jwt.verify(token, publicKey);
-        return { payload: decoded, expired: false };
+        return {payload: decoded, expired: false};
     } catch (error: any) {
         return { payload: null, expired: error.message.includes("jwt expired") };
     }
